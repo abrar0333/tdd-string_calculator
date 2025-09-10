@@ -5,12 +5,14 @@ class StringCalculator {
     final single = int.tryParse(numbers.trim());
     if (single != null) return single;
 
-    final parts = numbers.split(',');
+    final parts = _splitNumbers(numbers, [',', '\n']);
     var sum = 0;
     for (final p in parts) {
-      final v = int.tryParse(p.trim());
+      final s = p.trim();
+      if (s.isEmpty) continue;
+      final v = int.tryParse(s);
       if (v == null) {
-        throw FormatException('Invalid number: $p');
+        throw FormatException('Invalid number: $s');
       }
       sum += v;
     }
@@ -21,5 +23,4 @@ class StringCalculator {
     final pattern = delimiters.map(RegExp.escape).join('|');
     return input.split(RegExp(pattern));
   }
-
 }
