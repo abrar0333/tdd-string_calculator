@@ -16,4 +16,8 @@ void main() {
   test('two numbers, comma separated', (){
     expect(calc.add('1,5'), equals(6));
   });
+
+  test('handles newlines between numbers', () {
+    expect(calc.add('1\n2,3'), equals(6));
+  });
 }
