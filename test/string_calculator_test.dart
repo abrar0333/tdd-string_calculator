@@ -25,6 +25,14 @@ void main() {
     expect(calc.add('//;\n1;2'), equals(3));
   });
 
+  test('custom multi-character delimiter in brackets', () {
+    expect(calc.add('//[***]\n1***2***3'), equals(6));
+  });
+
+  test('multiple custom delimiters', () {
+    expect(calc.add('//[*][%]\n1*2%3'), equals(6));
+  });
+
   test('negative numbers throw with single negative', () {
     expect(
           () => calc.add('1,-2,3'),
