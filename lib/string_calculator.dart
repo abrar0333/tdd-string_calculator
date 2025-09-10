@@ -17,4 +17,9 @@ class StringCalculator {
     return sum;
   }
 
+  List<String> _splitNumbers(String input, List<String> delimiters) {
+    final pattern = delimiters.map(RegExp.escape).join('|');
+    return input.split(RegExp(pattern));
+  }
+
 }
