@@ -24,4 +24,18 @@ void main() {
   test('custom single-character delimiter', () {
     expect(calc.add('//;\n1;2'), equals(3));
   });
+
+  test('negative numbers throw with single negative', () {
+    expect(
+          () => calc.add('1,-2,3'),
+      throwsA(predicate((e) => e is FormatException && e.message == 'negative numbers not allowed -2')),
+    );
+  });
+
+  test('negative numbers throw listing all negatives', () {
+    expect(
+          () => calc.add('-1,-2,3'),
+      throwsA(predicate((e) => e is FormatException && e.message == 'negative numbers not allowed -1,-2')),
+    );
+  });
 }
