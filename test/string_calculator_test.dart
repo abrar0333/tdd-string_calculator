@@ -20,4 +20,8 @@ void main() {
   test('handles newlines between numbers', () {
     expect(calc.add('1\n2,3'), equals(6));
   });
+
+  test('custom single-character delimiter', () {
+    expect(calc.add('//;\n1;2'), equals(3));
+  });
 }
